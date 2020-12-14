@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "cpe-travel-backend",
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/index.js",
@@ -17,4 +17,14 @@
     "sqlite3": "^5.0.0",
     "uuid": "^8.3.2"
   }
+    "sqlite3": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielMauad/cpe-travel-backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gabrielMauad/cpe-travel-backend/issues"
+  },
+  "homepage": "https://github.com/gabrielMauad/cpe-travel-backend#readme"
 }

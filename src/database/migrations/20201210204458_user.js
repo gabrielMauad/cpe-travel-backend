@@ -1,3 +1,4 @@
+const { seed } = require("../connection");
 
 exports.up = function (knex) {
   return knex.schema.createTable('user', function (table) {
@@ -11,3 +12,4 @@ exports.up = function (knex) {
 exports.down = function (knex) {
   return knex.schema.dropTable("user");
 };
+

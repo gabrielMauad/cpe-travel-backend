@@ -13,7 +13,7 @@ module.exports = {
     pool: {
       afterCreate: (conn, cb) =>
         conn.run('PRAGMA foreign_keys = ON', cb)
-    }
+    },
   },
 
   staging: {
@@ -29,7 +29,7 @@ module.exports = {
     },
     migrations: {
       tableName: 'knex_migrations'
-    }
+    },
   },
 
   production: {

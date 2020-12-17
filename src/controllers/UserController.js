@@ -1,19 +1,20 @@
-
 const { del } = require('../database/connection');
 const knex = require('../database');
 const { response } = require('express');
 
 module.exports = {
     async index(req, res) {
-        const results = await knex.select().from('locals')
+        const results = await knex.select().from('user')
 
         return res.json(results); 
     },
     
     async create(req, res, next){
         try{
-            const { title, country, description } = req.body
-            const results = await knex('locals').insert({ title, country, description })
+            const admin = false;
+            const { user_id, email, password } = req.body
+            const results = await knex('user').insert({user_id, email, password, admin })
+
             return res.status(201).json(results)
 
         }catch(error){
@@ -25,13 +26,12 @@ module.exports = {
 
     async update(req, res, next){
         try {
-            const { local_id, description, title, country } = req.body
-            const results = await knex('locals')
-            .where({ local_id })
-            .update({ description, title, country })
+            const { user_id, email, password } = req.body
+            const results = await knex('user')
+            .where({ user_id })
+            .update({ email, password })
             
             return res.json(results)
-
         } catch (error) {
             next(error)
         }
@@ -39,13 +39,14 @@ module.exports = {
 
     async delete(req, res, next){
         try {
-            const { local_id } = req.params
+            const { user_id } = req.params
 
-            await knex('locals')
-            .where({ local_id })
+            await knex('user')
+            .where({ user_id })
             .del()
 
             return res.send()
+            
         } catch (error) {
             next(error)
         }

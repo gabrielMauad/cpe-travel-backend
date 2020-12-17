@@ -1,6 +1,7 @@
 const connection = require("../database/connection");
+const knex = require(../migrations")
 
-module.exports = {
+module.exports = {  
     async create(){
         const result = await connection("locals").insert(locals);
         return result;

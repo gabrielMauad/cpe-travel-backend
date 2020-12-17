@@ -1,4 +1,3 @@
-const { seed } = require("../connection");
 
 exports.up = function (knex) {
   return knex.schema.createTable('user', function (table) {

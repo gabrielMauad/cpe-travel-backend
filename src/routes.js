@@ -1,6 +1,7 @@
 const express = require('express')
 const routes = express.Router();
-
+const multer = require('multer')
+const multerConfig = require('./config/multer')
 const LocalsController = require('./controllers/LocalsController');
 const SublocalsController = require('./controllers/SublocalsController');
 const UserController = require('./controllers/UserController')
@@ -20,5 +21,9 @@ routes.post('/user', UserController.create)
 routes.put('/user', UserController.update) 
 routes.delete('/user/:user_id', UserController.delete)
 
+routes.post("/posts", multer(multerConfig).single("file"),(req, res) => {
+    console.log(req.file);
+    return res.json(req.file);
+  });
 
 module.exports = routes;  

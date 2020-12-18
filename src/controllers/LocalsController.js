@@ -1,11 +1,10 @@
-
-const { del } = require('../database/connection');
 const knex = require('../database');
 const { response } = require('express');
+const locals = require("../models/locals")
 
 module.exports = {
-    async index(req, res) {
-        const results = await knex.select().from('locals')
+    async getLocal(req, res) {
+        const results = await locals.getById({ local })
 
         return res.json(results); 
     },

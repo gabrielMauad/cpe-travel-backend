@@ -6,7 +6,7 @@ const LocalsController = require('./controllers/LocalsController');
 const SublocalsController = require('./controllers/SublocalsController');
 const UserController = require('./controllers/UserController')
 
-routes.get('/locals', LocalsController.index)
+routes.get('/locals', LocalsController.getLocal)
 routes.post('/locals', LocalsController.create)
 routes.put('/locals', LocalsController.update) 
 routes.delete('/locals/:local_id', LocalsController.delete)
@@ -16,14 +16,17 @@ routes.post('/sublocals', SublocalsController.create)
 routes.put('/sublocals', SublocalsController.update) 
 routes.delete('/sublocals/:sublocal_id', SublocalsController.delete)
 
-routes.get('/user', UserController.index)
+routes.get('/user/:email', UserController.getByEmail)
 routes.post('/user', UserController.create)
 routes.put('/user', UserController.update) 
-routes.delete('/user/:user_id', UserController.delete)
+routes.delete('/user/:email/:password', UserController.delete)
+routes.post('/user/authenticate', UserController.authenticate)
 
 routes.post("/posts", multer(multerConfig).single("file"),(req, res) => {
     console.log(req.file);
     return res.json(req.file);
   });
+
+
 
 module.exports = routes;  

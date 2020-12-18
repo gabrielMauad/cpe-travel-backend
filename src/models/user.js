@@ -1,30 +1,33 @@
 const { v4:uuidv4 } = require("uuid");
 const connection = require("../database/connection");
+const { getByEmail } = require("../controllers/UserController");
 
 module.exports = {
-    async create(){
+    async create(user){
         const user_id = uuidv4();
         user.user_id = user_id;
         
         const result = await connection("user").insert(user);
         return result;
     },
-    async getById({user_id}){
+    async getByEmail({email}){
         const result = await connection("user")
-        .where({user_id})
+
+        .where({ email })
         .select("*");
         return result;
     },
-    async updateById(user_id,user){
+    async updateById({ email, password}){
         const result = await connection("user")
-        .where({user_id})
-        .update(user);
+        .where({ email })
+        .update({ email, password })
+
         return result;
     },
-    async deleteById(){
+    async deleteById({ email, password}){
         const result = await connection("user")
-        .where({user_id})
-        .delete();
+        .where({ email, password })
+        .del()
     }
     
 }

@@ -1,5 +1,4 @@
 const connection = require("../database/connection");
-const knex = require(../migrations")
 
 module.exports = {  
     async create(){
